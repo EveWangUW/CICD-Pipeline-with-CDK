@@ -3,7 +3,7 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import {CodePipeline, CodePipelineSource, CodeBuildStep } from 'aws-cdk-lib/pipelines';
 import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
-//import { MyPipelineAppStage} from './stage';
+import { MyPipelineAppStage} from './stage';
 
 export class CicdPipelineWithCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -18,12 +18,14 @@ export class CicdPipelineWithCdkStack extends cdk.Stack {
                   'npx cdk synth']
       }),
     });
-
-    // defines an AWS Lambda resource
-    const hello = new lambda.Function(this, 'HelloHandler', {
-      runtime: lambda.Runtime.NODEJS_16_X,    // execution environment
-      code: lambda.Code.fromAsset('lambda'),  // code loaded from "lambda" directory
-      handler: 'hello.handler'                // file is "hello", function is "handler"
-    });
+    const testingStage = pipeline.addStage(new MyPipelineAppStage(this, "test", {
+      env: { account: "033752409409", region: "us-west-2" }
+    }));
+    
+    testingStage.addPost(new ManualApprovalStep('Manual approval before production'));
+    
+    const prodStage = pipeline.addStage(new MyPipelineAppStage(this, "prod", {
+      env: { account: "033752409409", region: "us-west-2" }
+    }));
   }
 }
