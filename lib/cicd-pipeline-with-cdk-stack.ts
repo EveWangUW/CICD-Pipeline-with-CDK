@@ -8,11 +8,11 @@ export class CicdPipelineWithCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    new CodePipeline(this,'Pipeline1',{
-      pipelineName:'TestPipeline1',
+    new CodePipeline(this,'Pipeline',{
+      pipelineName:'TestPipeline',
       synth: new ShellStep('synth', {
         input: CodePipelineSource.gitHub('EveWangUW/CICD-Pipeline-with-CDK', 'main'),
-        commands:['npm ci',
+        commands:['npm install',
                   'npm run build',
                   'npx cdk synth']
       }),
