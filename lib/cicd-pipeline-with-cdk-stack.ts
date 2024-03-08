@@ -8,13 +8,13 @@ export class CicdPipelineWithCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const pipeline = new CodePipeline(this,'Pipeline1',{
-      pipelineName:'TestPipeline1',
+    const pipeline = new CodePipeline(this,'Pipelinenew',{
+      pipelineName:'TestPipelinenew',
       synth: new ShellStep('synth', {
         input: CodePipelineSource.gitHub('EveWangUW/CICD-Pipeline-with-CDK', 'main'),
-        commands:['sudo npm install',
-                  'sudo npm run build',
-                  'sudo npx cdk synth']
+        commands:['npm install',
+                  'npm run build',
+                  'npx cdk synth']
       }),
     });
   }
