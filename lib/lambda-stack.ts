@@ -9,13 +9,10 @@ export class MyLambdaStack extends cdk.Stack {
 
     new Function(this, 'LambdaFunction', {
       runtime: Runtime.NODEJS,
-      handler: 'handler.handler',
+      handler: 'handler.handler', 
       code: Code.fromAsset(path.join(__dirname, 'lambda')),
       environment: {
-        stageName: stageName,
-      },
+        stageName: stageName},
     });
   }
 }
-
-
