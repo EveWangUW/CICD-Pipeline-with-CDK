@@ -12,9 +12,9 @@ export class CicdPipelineWithCdkStack extends cdk.Stack {
       pipelineName:'TestPipeline1',
       synth: new ShellStep('synth', {
         input: CodePipelineSource.gitHub('EveWangUW/CICD-Pipeline-with-CDK', 'main'),
-        commands:['npm install',
-                  'npm run build',
-                  'npx cdk synth']
+        commands:['sudo npm install',
+                  'sudo npm run build',
+                  'sudo npx cdk synth']
       }),
     });
   }
