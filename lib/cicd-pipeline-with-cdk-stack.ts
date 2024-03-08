@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import {CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
+import {CodePipeline, CodePipelineSource, CodeBuildStep } from 'aws-cdk-lib/pipelines';
 import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
 //import { MyPipelineAppStage} from './stage';
 
@@ -10,7 +10,7 @@ export class CicdPipelineWithCdkStack extends cdk.Stack {
 
     const pipeline = new CodePipeline(this,'Pipelinenew',{
       pipelineName:'TestPipelinenew',
-      synth: new ShellStep('synth', {
+      synth: new CodeBuildStep('synth', {
         input: CodePipelineSource.gitHub('EveWangUW/CICD-Pipeline-with-CDK', 'main'),
         commands:['npm install',
                   'npm run build',
