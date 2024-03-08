@@ -19,4 +19,3 @@ export class CicdPipelineWithCdkStack extends cdk.Stack {
     });
   }
 }
-pipeline.node.applyAspect(new Tag('PreventDeletion', 'true'));
