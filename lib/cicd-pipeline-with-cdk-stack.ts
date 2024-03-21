@@ -28,6 +28,6 @@ export class CicdPipelineWithCdkStack extends cdk.Stack {
     const prodStage = pipeline.addStage(new MyPipelineAppStage(this, "prod", {
       env: { account: "033752409409", region: "us-west-2" }
     }));
-
+    //YAYY
   }
 }
