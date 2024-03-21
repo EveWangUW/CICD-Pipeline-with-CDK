@@ -3,7 +3,7 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import {CodePipeline, CodePipelineSource, CodeBuildStep } from 'aws-cdk-lib/pipelines';
 import { ManualApprovalStep } from 'aws-cdk-lib/pipelines';
-import { MyPipelineAppStage} from './stage';
+//import { MyPipelineAppStage} from './stage';
 
 export class CicdPipelineWithCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
